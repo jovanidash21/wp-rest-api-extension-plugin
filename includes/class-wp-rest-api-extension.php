@@ -26,7 +26,6 @@ class WP_REST_API_Extension {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-rest-api-extension-loader.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-rest-api-extension-i18n.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-rest-api-extension-admin.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp-rest-api-extension-public.php';
 
 		$this->loader = new WP_REST_API_Extension_Loader();
 
@@ -49,7 +48,7 @@ class WP_REST_API_Extension {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
 
 		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
-		
+
 		$this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
 
 	}
