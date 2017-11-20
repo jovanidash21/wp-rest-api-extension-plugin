@@ -21,25 +21,20 @@ class WP_REST_API_Extension {
 	}
 
 	private function load_dependencies() {
-
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-rest-api-extension-loader.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-rest-api-extension-i18n.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-rest-api-extension-admin.php';
 
 		$this->loader = new WP_REST_API_Extension_Loader();
-
 	}
 
 	private function set_locale() {
-
 		$plugin_i18n = new WP_REST_API_Extension_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	private function define_admin_hooks() {
-
 		$plugin_admin = new WP_REST_API_Extension_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
@@ -49,7 +44,6 @@ class WP_REST_API_Extension {
 		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
 
 		$this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
-
 	}
 
 	public function run() {
