@@ -25,12 +25,13 @@
               <h4><?php echo 'Post types'; ?></h4>
 
               <?php
-                $post_types = get_post_types(
-                  array(
+                  $args       = array(
+                    'public'   => true,
                     '_builtin' => false,
-                    'public' => true
-                  ), 'object'
-                );
+                  );
+                  $output     = 'objects';
+                  $operator   = 'and';
+                  $post_types = get_post_types( $args, $output, $operator );
               ?>
               <fieldset>
                 <legend class="screen-reader-text"><span>Add Next And Previous Links</span></legend>
