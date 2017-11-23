@@ -6,6 +6,8 @@
       <div class="meta-box-sortables ui-sortable">
         <div class="postbox">
           <form method="post" name="wp_rest_api_extension_settings" action="options.php">
+            <?php settings_fields($this->plugin_name); ?>
+
             <h2 class="hndle"><?php echo 'Add Registered Nav Menu API'; ?></h2>
             <div class="inside">
               <h4><?php echo 'Nav menus'; ?></h4>

@@ -33,4 +33,39 @@ class WP_REST_API_Extension_Admin {
 		include_once( 'partials/wp-rest-api-extension-admin-display.php' );
 	}
 
+
+	public function settings_update() {
+		register_setting($this->plugin_name, $this->plugin_name, array($this, 'validate'));
+	}
+
+	public function validate($input) {
+    $valid = array();
+
+		$menus = get_registered_nav_menus();
+
+		foreach ( $menus as $location => $description ) {
+			$registered_nav_menu = 'registered-nav-menu-' . $location;
+
+			$valid[$registered_nav_menu] = ( isset($input[$registered_nav_menu]) && !empty($input[$registered_nav_menu]) ) ? 1 : 0;
+		}
+
+		$args       = array(
+			'public'   => true,
+			'_builtin' => false,
+		);
+		$output     = 'objects';
+		$operator   = 'and';
+		$post_types = get_post_types( $args, $output, $operator );
+
+		$valid['next-prev-links-page'] = ( isset($input['next-prev-links-page']) && !empty($input['next-prev-links-page']) ) ? 1 : 0;
+		$valid['next-prev-links-post'] = ( isset($input['next-prev-links-post']) && !empty($input['next-prev-links-post']) ) ? 1 : 0;
+
+		foreach ( $post_types as $post_type ) {
+			$next_prev_links = 'next-prev-links-' . $post_type->name;
+
+			$valid[$next_prev_links] = ( isset($input[$next_prev_links]) && !empty($input[$next_prev_links]) ) ? 1 : 0;
+		}
+
+    return $valid;
+	}
 }
