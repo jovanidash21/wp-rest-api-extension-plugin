@@ -1,3 +1,15 @@
+<?php
+$menus = get_registered_nav_menus();
+
+$args       = array(
+  'public'   => true,
+  '_builtin' => false,
+);
+$output     = 'objects';
+$operator   = 'and';
+$post_types = get_post_types( $args, $output, $operator );
+?>
+
 <div class="wrap">
   <h2><?php echo esc_html(get_admin_page_title()); ?></h2>
 
@@ -11,7 +23,7 @@
             <h2 class="hndle"><?php echo 'Add Registered Nav Menu API'; ?></h2>
             <div class="inside">
               <h4><?php echo 'Nav menus'; ?></h4>
-              <?php $menus = get_registered_nav_menus(); ?>
+
               <?php foreach ( $menus as $location => $description ) : ?>
                 <fieldset>
                   <legend class="screen-reader-text"><span>Add Registered nav Menu API</span></legend>
@@ -27,15 +39,6 @@
             <div class="inside">
               <h4><?php echo 'Post types'; ?></h4>
 
-              <?php
-                  $args       = array(
-                    'public'   => true,
-                    '_builtin' => false,
-                  );
-                  $output     = 'objects';
-                  $operator   = 'and';
-                  $post_types = get_post_types( $args, $output, $operator );
-              ?>
               <fieldset>
                 <legend class="screen-reader-text"><span>Add Next And Previous Links</span></legend>
                 <label for="<?php echo $this->plugin_name; ?>-next-prev-links-page">
