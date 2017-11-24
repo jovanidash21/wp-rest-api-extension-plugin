@@ -8,6 +8,8 @@ $args       = array(
 $output     = 'objects';
 $operator   = 'and';
 $post_types = get_post_types( $args, $output, $operator );
+
+$options = get_option($this->plugin_name);
 ?>
 
 <div class="wrap">
@@ -17,8 +19,11 @@ $post_types = get_post_types( $args, $output, $operator );
     <div id="post-body" class="metabox-holder columns-1">
       <div class="meta-box-sortables ui-sortable">
         <div class="postbox">
-          <form method="post" name="wp_rest_api_extension_settings" action="options.php">
-            <?php settings_fields($this->plugin_name); ?>
+          <form method="post" name="wp-rest-api-extension_options" action="options.php">
+            <?php
+              settings_fields($this->plugin_name);
+              do_settings_sections($this->plugin_name);
+            ?>
 
             <h2 class="hndle"><?php echo 'Add Registered Nav Menu API'; ?></h2>
             <div class="inside">
@@ -28,7 +33,7 @@ $post_types = get_post_types( $args, $output, $operator );
                 <fieldset>
                   <legend class="screen-reader-text"><span>Add Registered nav Menu API</span></legend>
                   <label for="<?php echo $this->plugin_name; ?>-registered-nav-menu-<?php echo $location ?>">
-                    <input type="checkbox" id="<?php echo $this->plugin_name; ?>-registered-nav-menu-<?php echo $location ?>" name="<?php echo $this->plugin_name; ?> [registered-nav-menu-<?php echo $location ?>]" value="1"/>
+                    <input type="checkbox" id="<?php echo $this->plugin_name; ?>-registered-nav-menu-<?php echo $location ?>" name="<?php echo $this->plugin_name; ?> [registered-nav-menu-<?php echo $location ?>]" value="1" <?php checked( $options['registered-nav-menu-' . $location], 1 ); ?>/>
                       <span><?php esc_attr_e($description, $this->plugin_name); ?></span>
                   </label>
                 </fieldset>
@@ -42,14 +47,14 @@ $post_types = get_post_types( $args, $output, $operator );
               <fieldset>
                 <legend class="screen-reader-text"><span>Add Next And Previous Links</span></legend>
                 <label for="<?php echo $this->plugin_name; ?>-next-prev-links-page">
-                  <input type="checkbox" id="<?php echo $this->plugin_name; ?>-next-prev-links-page" name="<?php echo $this->plugin_name; ?> [next-prev-links-page]" value="1"/>
+                  <input type="checkbox" id="<?php echo $this->plugin_name; ?>-next-prev-links-page" name="<?php echo $this->plugin_name; ?> [next-prev-links-page]" value="1" <?php checked( $options['next-prev-links-page'], 1 ); ?>/>
                     <span><?php esc_attr_e('Page', $this->plugin_name); ?></span>
                 </label>
               </fieldset>
               <fieldset>
                 <legend class="screen-reader-text"><span>Add Next And Previous Links</span></legend>
                 <label for="<?php echo $this->plugin_name; ?>-next-prev-links-post">
-                  <input type="checkbox" id="<?php echo $this->plugin_name; ?>-next-prev-links-post" name="<?php echo $this->plugin_name; ?> [next-prev-links-post]" value="1"/>
+                  <input type="checkbox" id="<?php echo $this->plugin_name; ?>-next-prev-links-post" name="<?php echo $this->plugin_name; ?> [next-prev-links-post]" value="1" <?php checked( $options['next-prev-links-post'], 1 ); ?>/>
                     <span><?php esc_attr_e('Post', $this->plugin_name); ?></span>
                 </label>
               </fieldset>
@@ -58,7 +63,7 @@ $post_types = get_post_types( $args, $output, $operator );
                   <fieldset>
                     <legend class="screen-reader-text"><span>Add Next And Previous Links</span></legend>
                     <label for="<?php echo $this->plugin_name; ?>-next-prev-links-<?php echo $post_type->name ?>">
-                      <input type="checkbox" id="<?php echo $this->plugin_name; ?>-next-prev-links-<?php echo $post_type->name ?>" name="<?php echo $this->plugin_name; ?> [next-prev-links-<?php echo $post_type->name ?>]" value="1"/>
+                      <input type="checkbox" id="<?php echo $this->plugin_name; ?>-next-prev-links-<?php echo $post_type->name ?>" name="<?php echo $this->plugin_name; ?> [next-prev-links-<?php echo $post_type->name ?>]" value="1" <?php checked( $options['next-prev-links-' . $post_type->name], 1 ); ?>/>
                         <span><?php esc_attr_e($post_type->label, $this->plugin_name); ?></span>
                     </label>
                   </fieldset>
