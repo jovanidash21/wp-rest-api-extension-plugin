@@ -17,7 +17,7 @@ class WP_REST_API_Extension {
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
-
+		$this->define_public_hooks();
 	}
 
 	private function load_dependencies() {
@@ -46,8 +46,15 @@ class WP_REST_API_Extension {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
 
 		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
-		
+
 		$this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
+	}
+
+	private function define_public_hooks() {
+		$plugin_public = new WP_REST_API_Extension_Public( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 	}
 
 	public function run() {
