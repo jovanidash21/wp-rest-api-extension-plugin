@@ -30,7 +30,7 @@ class WP_REST_API_Extension_Public {
 		$options = get_option( $this->plugin_name );
 
 		foreach ( $post_types as $post_type ) {
-			if ( !empty($this->wp_rest_api_extension_options['next-prev-links-' . $post_type->name]) ) {
+			if ( !empty($this->wp_rest_api_extension_options['next-prev-post-' . $post_type->name]) ) {
 				$this->add_next_link( $post_type->name );
 				$this->add_prev_link( $post_type->name );
 			}

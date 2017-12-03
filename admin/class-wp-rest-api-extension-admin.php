@@ -57,13 +57,13 @@ class WP_REST_API_Extension_Admin {
 		$operator   = 'and';
 		$post_types = get_post_types( $args, $output, $operator );
 
-		$valid['next-prev-links-page'] = ( isset($input['next-prev-links-page']) && !empty($input['next-prev-links-page']) ) ? 1 : 0;
-		$valid['next-prev-links-post'] = ( isset($input['next-prev-links-post']) && !empty($input['next-prev-links-post']) ) ? 1 : 0;
+		$valid['next-prev-post-page'] = ( isset($input['next-prev-post-page']) && !empty($input['next-prev-post-page']) ) ? 1 : 0;
+		$valid['next-prev-post-post'] = ( isset($input['next-prev-post-post']) && !empty($input['next-prev-post-post']) ) ? 1 : 0;
 
 		foreach ( $post_types as $post_type ) {
-			$next_prev_links = 'next-prev-links-' . $post_type->name;
+			$next_prev_post = 'next-prev-post-' . $post_type->name;
 
-			$valid[$next_prev_links] = ( isset($input[$next_prev_links]) && !empty($input[$next_prev_links]) ) ? 1 : 0;
+			$valid[$next_prev_post] = ( isset($input[$next_prev_post]) && !empty($input[$next_prev_post]) ) ? 1 : 0;
 		}
 
     return $valid;
