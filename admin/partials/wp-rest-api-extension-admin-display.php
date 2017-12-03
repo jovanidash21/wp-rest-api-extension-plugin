@@ -33,7 +33,7 @@ $options = get_option($this->plugin_name);
                 <fieldset>
                   <legend class="screen-reader-text"><span><?php _e('Add Registered Nav Menu API', $this->plugin_name);?></span></legend>
                   <label for="<?php echo $this->plugin_name; ?>-registered-nav-menu-<?php echo $location ?>">
-                    <input type="checkbox" id="<?php echo $this->plugin_name; ?>-registered-nav-menu-<?php echo $location ?>" name="<?php echo $this->plugin_name; ?>[registered-nav-menu-<?php echo $location ?>]" value="1" <?php checked( $options['registered-nav-menu-' . $location], 1 ); ?>/>
+                    <input type="checkbox" id="<?php echo $this->plugin_name; ?>-registered-nav-menu-<?php echo $location ?>" name="<?php echo $this->plugin_name; ?>[registered-nav-menu-<?php echo $location ?>]" value="1" <?php isset($options['registered-nav-menu-' . $location]) ? checked( $options['registered-nav-menu-' . $location], 1 ) : ''; ?>/>
                       <span><?php esc_attr_e($description, $this->plugin_name); ?></span>
                   </label>
                 </fieldset>
@@ -47,14 +47,14 @@ $options = get_option($this->plugin_name);
               <fieldset>
                 <legend class="screen-reader-text"><span><?php _e('Add Next And Previous Post', $this->plugin_name);?></span></legend>
                 <label for="<?php echo $this->plugin_name; ?>-next-prev-post-page">
-                  <input type="checkbox" id="<?php echo $this->plugin_name; ?>-next-prev-post-page" name="<?php echo $this->plugin_name; ?>[next-prev-post-page]" value="1" <?php checked( $options['next-prev-post-page'], 1 ); ?>/>
+                  <input type="checkbox" id="<?php echo $this->plugin_name; ?>-next-prev-post-page" name="<?php echo $this->plugin_name; ?>[next-prev-post-page]" value="1" <?php isset($options['next-prev-post-page']) ? checked( $options['next-prev-post-page'], 1 ) : ''; ?>/>
                     <span><?php esc_attr_e('Page', $this->plugin_name); ?></span>
                 </label>
               </fieldset>
               <fieldset>
                 <legend class="screen-reader-text"><span><?php _e('Add Next And Previous Post', $this->plugin_name);?></span></legend>
                 <label for="<?php echo $this->plugin_name; ?>-next-prev-post-post">
-                  <input type="checkbox" id="<?php echo $this->plugin_name; ?>-next-prev-post-post" name="<?php echo $this->plugin_name; ?>[next-prev-post-post]" value="1" <?php checked( $options['next-prev-post-post'], 1 ); ?>/>
+                  <input type="checkbox" id="<?php echo $this->plugin_name; ?>-next-prev-post-post" name="<?php echo $this->plugin_name; ?>[next-prev-post-post]" value="1" <?php isset($options['next-prev-post-post']) ? checked( $options['next-prev-post-post'], 1 ) : ''; ?>/>
                     <span><?php esc_attr_e('Post', $this->plugin_name); ?></span>
                 </label>
               </fieldset>
@@ -63,7 +63,7 @@ $options = get_option($this->plugin_name);
                   <fieldset>
                     <legend class="screen-reader-text"><span><?php _e('Add Next And Previous Post', $this->plugin_name);?></span></legend>
                     <label for="<?php echo $this->plugin_name; ?>-next-prev-post-<?php echo $post_type->name ?>">
-                      <input type="checkbox" id="<?php echo $this->plugin_name; ?>-next-prev-post-<?php echo $post_type->name ?>" name="<?php echo $this->plugin_name; ?>[next-prev-post-<?php echo $post_type->name ?>]" value="1" <?php checked( $options['next-prev-post-' . $post_type->name], 1 ); ?>/>
+                      <input type="checkbox" id="<?php echo $this->plugin_name; ?>-next-prev-post-<?php echo $post_type->name ?>" name="<?php echo $this->plugin_name; ?>[next-prev-post-<?php echo $post_type->name ?>]" value="1" <?php isset($options['next-prev-post-' . $post_type->name]) ? checked( $options['next-prev-post-' . $post_type->name], 1 ) : ''; ?>/>
                         <span><?php esc_attr_e($post_type->label, $this->plugin_name); ?></span>
                     </label>
                   </fieldset>
