@@ -24,8 +24,7 @@ class WP_REST_API_Extension_Public {
 		  'public'   => true,
 		);
 		$output     = 'objects';
-		$operator   = 'and';
-		$post_types = get_post_types( $args, $output, $operator );
+		$post_types = get_post_types( $args, $output );
 
 		$options = get_option( $this->plugin_name );
 
