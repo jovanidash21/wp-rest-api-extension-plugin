@@ -1,8 +1,8 @@
 <?php
 $menus = get_registered_nav_menus();
 
-$args       = array(
-  'public'   => true,
+$args = array(
+  'public' => true,
 );
 $output     = 'objects';
 $post_types = get_post_types( $args, $output );
@@ -31,8 +31,13 @@ $options = get_option($this->plugin_name);
                 <fieldset>
                   <legend class="screen-reader-text"><span><?php _e('Add Registered Nav Menu API', $this->plugin_name);?></span></legend>
                   <label for="<?php echo $this->plugin_name; ?>-registered-nav-menu-<?php echo $location ?>">
-                    <input type="checkbox" id="<?php echo $this->plugin_name; ?>-registered-nav-menu-<?php echo $location ?>" name="<?php echo $this->plugin_name; ?>[registered-nav-menu-<?php echo $location ?>]" value="1" <?php isset($options['registered-nav-menu-' . $location]) ? checked( $options['registered-nav-menu-' . $location], 1 ) : ''; ?>/>
-                      <span><?php esc_attr_e($description, $this->plugin_name); ?></span>
+                    <input type="checkbox" id="<?php echo $this->plugin_name; ?>-registered-nav-menu-<?php echo $location ?>" name="<?php echo $this->plugin_name; ?>[registered-nav-menu-<?php echo $location ?>]" value="1"
+                      <?php
+                        $registered_nav_menu_option = $options['registered-nav-menu-' . $location];
+                        isset($registered_nav_menu_option) ? checked($registered_nav_menu_option, 1) : '';
+                      ?>
+                    />
+                    <span><?php esc_attr_e($description, $this->plugin_name); ?></span>
                   </label>
                 </fieldset>
               <?php endforeach; ?>
@@ -46,20 +51,27 @@ $options = get_option($this->plugin_name);
                 <?php foreach ( $post_types as $post_type ) : ?>
                   <?php
                     if (
-                      ($post_type->name == 'page') ||
-                      ($post_type->name == 'attachment')
+                      ($post_type->name != 'page') ||
+                      ($post_type->name != 'attachment')
                     ) :
-                      continue;
-                    else :
                   ?>
                     <fieldset>
                       <legend class="screen-reader-text"><span><?php _e('Add Next And Previous Post', $this->plugin_name);?></span></legend>
                       <label for="<?php echo $this->plugin_name; ?>-next-prev-post-<?php echo $post_type->name ?>">
-                        <input type="checkbox" id="<?php echo $this->plugin_name; ?>-next-prev-post-<?php echo $post_type->name ?>" name="<?php echo $this->plugin_name; ?>[next-prev-post-<?php echo $post_type->name ?>]" value="1" <?php isset($options['next-prev-post-' . $post_type->name]) ? checked( $options['next-prev-post-' . $post_type->name], 1 ) : ''; ?>/>
-                          <span><?php esc_attr_e($post_type->label, $this->plugin_name); ?></span>
+                        <input type="checkbox" id="<?php echo $this->plugin_name; ?>-next-prev-post-<?php echo $post_type->name ?>" name="<?php echo $this->plugin_name; ?>[next-prev-post-<?php echo $post_type->name ?>]" value="1"
+                          <?php
+                            $next_prev_post_option = $options['next-prev-post-' . $post_type->name];
+                            isset($next_prev_post_option) ? checked($next_prev_post_option) : '';
+                          ?>
+                        />
+                        <span><?php esc_attr_e($post_type->label, $this->plugin_name); ?></span>
                       </label>
                     </fieldset>
-                  <?php endif; ?>
+                  <?php
+                    else :
+                      continue;
+                    endif;
+                  ?>
                 <?php endforeach; ?>
               <?php endif;  ?>
             </div>

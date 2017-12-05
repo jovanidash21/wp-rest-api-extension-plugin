@@ -21,7 +21,7 @@ class WP_REST_API_Extension_Public {
 
 	public function add_next_prev_post() {
 		$args = array(
-		  'public'   => true,
+		  'public' => true,
 		);
 		$output     = 'objects';
 		$post_types = get_post_types( $args, $output );
@@ -37,7 +37,7 @@ class WP_REST_API_Extension_Public {
 	}
 
 	private function add_next_post($post_type) {
-		$add_next_link = function ( $object, $request ) use ($post_type) {
+		$add_next_link = function ( $object, $request ) use ( $post_type ) {
 			global $post;
 
 			$post_id = $object['id'];
@@ -82,7 +82,7 @@ class WP_REST_API_Extension_Public {
 	}
 
 	private function add_prev_post( $post_type ) {
-		$add_prev_link = function ( $object, $request ) use ($post_type) {
+		$add_prev_link = function ( $object, $request ) use ( $post_type ) {
 			global $post;
 
 			$post_id = $object['id'];

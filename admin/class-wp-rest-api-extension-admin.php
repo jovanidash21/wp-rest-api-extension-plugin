@@ -49,21 +49,23 @@ class WP_REST_API_Extension_Admin {
 			$valid[$registered_nav_menu] = ( isset($input[$registered_nav_menu]) && !empty($input[$registered_nav_menu]) ) ? 1 : 0;
 		}
 
-		$args       = array(
-			'public'   => true,
-			'_builtin' => false,
+		$args = array(
+			'public' => true,
 		);
 		$output     = 'objects';
-		$operator   = 'and';
-		$post_types = get_post_types( $args, $output, $operator );
-
-		$valid['next-prev-post-page'] = ( isset($input['next-prev-post-page']) && !empty($input['next-prev-post-page']) ) ? 1 : 0;
-		$valid['next-prev-post-post'] = ( isset($input['next-prev-post-post']) && !empty($input['next-prev-post-post']) ) ? 1 : 0;
+		$post_types = get_post_types( $args, $output );
 
 		foreach ( $post_types as $post_type ) {
-			$next_prev_post = 'next-prev-post-' . $post_type->name;
+			if (
+				($post_type->name != 'page') ||
+				($post_type->name != 'attachment')
+			) {
+				$next_prev_post = 'next-prev-post-' . $post_type->name;
 
-			$valid[$next_prev_post] = ( isset($input[$next_prev_post]) && !empty($input[$next_prev_post]) ) ? 1 : 0;
+				$valid[$next_prev_post] = ( isset($input[$next_prev_post]) && !empty($input[$next_prev_post]) ) ? 1 : 0;
+			} else {
+				continue;
+			}
 		}
 
     return $valid;
