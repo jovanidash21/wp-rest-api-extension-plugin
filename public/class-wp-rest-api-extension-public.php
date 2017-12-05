@@ -19,7 +19,7 @@ class WP_REST_API_Extension_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-rest-api-extension-public.js', array( 'jquery' ), $this->version, false );
 	}
 
-	public function add_next_prev_links() {
+	public function add_next_prev_post() {
 		$args = array(
 		  'public'   => true,
 		);
@@ -30,13 +30,13 @@ class WP_REST_API_Extension_Public {
 
 		foreach ( $post_types as $post_type ) {
 			if ( !empty($this->wp_rest_api_extension_options['next-prev-post-' . $post_type->name]) ) {
-				$this->add_next_link( $post_type->name );
-				$this->add_prev_link( $post_type->name );
+				$this->add_next_post( $post_type->name );
+				$this->add_prev_post( $post_type->name );
 			}
 		}
 	}
 
-	private function add_next_link($post_type) {
+	private function add_next_post($post_type) {
 		$add_next_link = function ( $object, $request ) use ($post_type) {
 			global $post;
 
@@ -81,7 +81,7 @@ class WP_REST_API_Extension_Public {
 		);
 	}
 
-	private function add_prev_link( $post_type ) {
+	private function add_prev_post( $post_type ) {
 		$add_prev_link = function ( $object, $request ) use ($post_type) {
 			global $post;
 
