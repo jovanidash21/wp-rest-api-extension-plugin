@@ -11,14 +11,29 @@ class WP_REST_API_Extension_Public {
 		$this->wp_rest_api_extension_options = get_option($this->plugin_name);
 	}
 
+	/**
+	 * Register public styleheets
+	 *
+	 * @since 1.0.0
+	 */
 	public function enqueue_styles() {
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-rest-api-extension-public.css', array(), $this->version, 'all' );
 	}
 
+	/**
+	 * Register public scripts
+	 *
+	 * @since 1.0.0
+	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-rest-api-extension-public.js', array( 'jquery' ), $this->version, false );
 	}
 
+	/**
+	 * Add next and previous post field
+	 *
+	 * @since 1.0.0
+	 */
 	public function add_next_prev_post() {
 		$args = array(
 		  'public' => true,
@@ -36,6 +51,11 @@ class WP_REST_API_Extension_Public {
 		}
 	}
 
+	/**
+	 * Add next post field
+	 *
+	 * @since 1.0.0
+	 */
 	private function add_next_post($post_type) {
 		$add_next_link = function ( $object, $request ) use ( $post_type ) {
 			global $post;
@@ -81,6 +101,11 @@ class WP_REST_API_Extension_Public {
 		);
 	}
 
+	/**
+	 * Add next post field
+	 *
+	 * @since 1.0.0
+	 */
 	private function add_prev_post( $post_type ) {
 		$add_prev_link = function ( $object, $request ) use ( $post_type ) {
 			global $post;
