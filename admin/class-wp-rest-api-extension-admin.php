@@ -91,7 +91,7 @@ class WP_REST_API_Extension_Admin {
 
 		foreach ( $post_types as $post_type ) {
 			if (
-				($post_type->name != 'page') ||
+				($post_type->name != 'page') &&
 				($post_type->name != 'attachment')
 			) {
 				$next_prev_post = 'next-prev-post-' . $post_type->name;

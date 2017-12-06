@@ -51,7 +51,7 @@ $options = get_option($this->plugin_name);
                 <?php foreach ( $post_types as $post_type ) : ?>
                   <?php
                     if (
-                      ($post_type->name != 'page') ||
+                      ($post_type->name != 'page') &&
                       ($post_type->name != 'attachment')
                     ) :
                   ?>
