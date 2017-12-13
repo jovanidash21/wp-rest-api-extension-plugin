@@ -45,8 +45,8 @@ class WP_REST_API_Extension_Public {
 
 		foreach ( $post_types as $post_type ) {
 			if ( !empty($this->wp_rest_api_extension_options['next-prev-post-' . $post_type->name]) ) {
-				$this->add_next_post( $post_type->name );
-				$this->add_prev_post( $post_type->name );
+				self::add_next_post( $post_type->name );
+				self::add_prev_post( $post_type->name );
 			}
 		}
 	}
