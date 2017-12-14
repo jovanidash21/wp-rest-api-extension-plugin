@@ -75,13 +75,7 @@ class WP_REST_API_Extension_Admin {
 	public function validate($input) {
     $valid = array();
 
-		$menus = get_registered_nav_menus();
-
-		foreach ( $menus as $location => $description ) {
-			$registered_nav_menu = 'registered-nav-menu-' . $location;
-
-			$valid[$registered_nav_menu] = ( isset($input[$registered_nav_menu]) && !empty($input[$registered_nav_menu]) ) ? 1 : 0;
-		}
+		$valid['enable-registered-nav-menu-api-route'] = ( isset($input['enable-registered-nav-menu-api-route']) && !empty($input['enable-registered-nav-menu-api-route']) ) ? 1 : 0;
 
 		$args = array(
 			'public' => true,

@@ -1,6 +1,4 @@
 <?php
-$menus = get_registered_nav_menus();
-
 $args = array(
   'public' => true,
 );
@@ -25,22 +23,18 @@ $options = get_option($this->plugin_name);
 
             <h2 class="hndle"><?php echo 'Add Registered Nav Menu API'; ?></h2>
             <div class="inside">
-              <h4><?php echo 'Nav menus'; ?></h4>
-
-              <?php foreach ( $menus as $location => $description ) : ?>
-                <fieldset>
-                  <legend class="screen-reader-text"><span><?php _e('Add Registered Nav Menu API', $this->plugin_name);?></span></legend>
-                  <label for="<?php echo $this->plugin_name; ?>-registered-nav-menu-<?php echo $location ?>">
-                    <input type="checkbox" id="<?php echo $this->plugin_name; ?>-registered-nav-menu-<?php echo $location ?>" name="<?php echo $this->plugin_name; ?>[registered-nav-menu-<?php echo $location ?>]" value="1"
-                      <?php
-                        $registered_nav_menu_option = $options['registered-nav-menu-' . $location];
-                        isset($registered_nav_menu_option) ? checked($registered_nav_menu_option, 1) : '';
-                      ?>
-                    />
-                    <span><?php esc_attr_e($description, $this->plugin_name); ?></span>
-                  </label>
-                </fieldset>
-              <?php endforeach; ?>
+              <fieldset>
+                <legend class="screen-reader-text"><span><?php _e('Enable Registered Nav Menu API Route', $this->plugin_name);?></span></legend>
+                <label for="<?php echo $this->plugin_name; ?>-enable-registered-nav-menu-api-route">
+                  <input type="checkbox" id="<?php echo $this->plugin_name; ?>-enable-registered-nav-menu-api-route" name="<?php echo $this->plugin_name; ?>[enable-registered-nav-menu-api-route]" value="1"
+                    <?php
+                      $registered_nav_menu_option = $options['enable-registered-nav-menu-api-route'];
+                      isset($registered_nav_menu_option) ? checked($registered_nav_menu_option, 1) : '';
+                    ?>
+                  />
+                  <span><?php _e('Enable Registered Nav Menu API Route', $this->plugin_name);?></span>
+                </label>
+              </fieldset>
             </div>
 
             <h2 class="hndle"><?php echo 'Add Next And Previous Post'; ?></h2>
