@@ -6,8 +6,8 @@ class WP_REST_API_Extension_Public {
 	private $version;
 
 	public function __construct( $plugin_name, $version ) {
-		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->plugin_name                   = $plugin_name;
+		$this->version                       = $version;
 		$this->wp_rest_api_extension_options = get_option($this->plugin_name);
 	}
 
