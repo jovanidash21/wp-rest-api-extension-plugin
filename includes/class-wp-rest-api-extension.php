@@ -57,6 +57,7 @@ class WP_REST_API_Extension {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		$this->loader->add_action( 'rest_api_init', $plugin_public, 'add_next_prev_post' );
+		$this->loader->add_action( 'rest_api_init', $plugin_public, 'add_registered_nav_menu_api' );
 	}
 
 	public function run() {
