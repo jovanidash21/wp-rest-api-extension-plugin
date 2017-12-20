@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP REST API Extension
  * Plugin URI: https://jovaniwarguez.wordpress.com
- * Description: A plugin that extends WordPress REST API with new routes
+ * Description: A plugin that extends WordPress REST API with new routes and fields.
  * Version: 1.0.0
  * Author: Jovani Warguez
  * Author URI: https://jovaniwarguez.wordpress.com
