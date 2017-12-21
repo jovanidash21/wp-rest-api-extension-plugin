@@ -12,5 +12,9 @@ git clone https://github.com/jovanidash21/wp-rest-api-extension-plugin.git
 * Install and then activate the plugin.
 * Go to Settings -> WP REST API Extension to configure the settings of the plugin.
 
+## Features
+* Add ```/wp-json/wp/v2/menus/<menu-location>``` route.
+* Add ```next_post``` and ```prev_post``` field on API route of a post type item.
+
 ## License
 Licensed under [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
