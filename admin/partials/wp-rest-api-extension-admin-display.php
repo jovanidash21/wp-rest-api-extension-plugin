@@ -68,6 +68,13 @@ $options = get_option($this->plugin_name);
                   ?>
                 <?php endforeach; ?>
               <?php endif;  ?>
+              <p>
+                <strong>Note:&nbsp;</strong>Make sure the Post Type/s has&nbsp;
+                <a href="https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-rest-api-support-for-custom-content-types/" target="_blank">
+                  REST API support
+                </a>
+                &nbsp;for your theme.
+              </p>
             </div>
 
             <div class="inside">
