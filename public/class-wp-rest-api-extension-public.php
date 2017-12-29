@@ -147,11 +147,20 @@ class WP_REST_API_Extension_Public {
 
 			if ( !empty(get_next_post()) ) {
 				$next_post = get_next_post();
+				$parse_url = parse_url(get_permalink($next_post));
+
+				if ( $parse_url['path'] !== '/' ) {
+					$path = rtrim($parse_url['path'], '/');
+				} else {
+					$path = $parse_url['path'];
+				}
+
 				$next_object = (object) [
 					'id'    => $next_post->ID,
 					'slug'  => $next_post->post_name,
 					'title' => $next_post->post_title,
-					'link'  => get_permalink($next_post)
+					'url'   => get_permalink($next_post),
+					'path'  => $path
 				];
 			} else {
 				$next_query = new WP_Query( array(
@@ -160,11 +169,20 @@ class WP_REST_API_Extension_Public {
 					'order'          => 'ASC'
 				) );
 				$next_post = $next_query->the_post();
+				$parse_url = parse_url(get_permalink($next_post));
+
+				if ( $parse_url['path'] !== '/' ) {
+					$path = rtrim($parse_url['path'], '/');
+				} else {
+					$path = $parse_url['path'];
+				}
+
 				$next_object = (object) [
 					'id'    => get_the_ID($next_post),
 					'slug'  => get_post_field('post_name', $next_post),
 					'title' => get_the_title($next_post),
-					'link'  => get_permalink($next_post)
+					'url'   => get_permalink($next_post),
+					'path'  => $path
 				];
 			}
 
@@ -197,11 +215,20 @@ class WP_REST_API_Extension_Public {
 
 			if ( !empty(get_previous_post()) ) {
 				$prev_post = get_previous_post();
+				$parse_url = parse_url(get_permalink($prev_post));
+
+				if ( $parse_url['path'] !== '/' ) {
+					$path = rtrim($parse_url['path'], '/');
+				} else {
+					$path = $parse_url['path'];
+				}
+
 				$prev_object = (object) [
 					'id'    => $prev_post->ID,
 					'slug'  => $prev_post->post_name,
 					'title' => $prev_post->post_title,
-					'link'  => get_permalink($prev_post)
+					'url'   => get_permalink($prev_post),
+					'path'  => $path
 				];
 			} else {
 				$prev_query = new WP_Query( array(
@@ -210,11 +237,20 @@ class WP_REST_API_Extension_Public {
 					'order'          => 'DESC'
 				) );
 				$prev_post = $prev_query->the_post();
+				$parse_url = parse_url(get_permalink($prev_post));
+
+				if ( $parse_url['path'] !== '/' ) {
+					$path = rtrim($parse_url['path'], '/');
+				} else {
+					$path = $parse_url['path'];
+				}
+
 				$prev_object = (object) [
 					'id'    => get_the_ID($prev_post),
 					'slug'  => get_post_field('post_name', $prev_post),
 					'title' => get_the_title($prev_post),
-					'link'  => get_permalink($prev_post)
+					'url'   => get_permalink($prev_post),
+					'path'  => $path
 				];
 			}
 
