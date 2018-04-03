@@ -52,12 +52,16 @@ class WP_REST_API_Extension_Public {
 			$children           = array();
 
 			foreach ( $reverse_menu_items as $item ) {
-				$parse_url = parse_url($item->url);
+				if ( $item->type != 'custom' ) {
+					$parse_url = parse_url($item->url);
 
-				if ( $parse_url['path'] !== '/' ) {
-					$path = rtrim($parse_url['path'], '/');
+					if ( $parse_url['path'] !== '/' ) {
+						$path = rtrim($parse_url['path'], '/');
+					} else {
+						$path = $parse_url['path'];
+					}
 				} else {
-					$path = $parse_url['path'];
+					$path = $item->url;
 				}
 
 				$menu_item = array(
